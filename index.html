@@ -7,7 +7,8 @@
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
 
     <script src="resources/3p/iSlider/iSlider.min.js"></script>
-    <script src="resources/3p/iSlider/iSlider.animate.min.js"></script>
+    <script src="resources/3p/iSlider/iSlider.min.js"></script>
+    <script src="resources/3p/jquery-2.1.4.min.js"></script>
     <link href="resources/3p/iSlider/iSlider.min.css" rel="stylesheet">
     <style type="text/css">
         body {
@@ -70,6 +71,11 @@
             line-height: 1.5rem;
         }
 
+        span.message {
+            display: block;
+            -webkit-animation: fadeIn 1s ease-out;
+        }
+
         div.slide {
             width: 100%;
         }
@@ -105,6 +111,25 @@
             }
         }
 
+        @-webkit-keyframes fadeIn {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 20px, 0);
+            }
+            30% {
+                opacity: 0.2;
+                -webkit-transform: translate3d(0, 10px, 0);
+            }
+            60% {
+                opacity: 0.8;
+                -webkit-transform: translate3d(0, 5px, 0);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0px, 0);
+            }
+        }
+
         .slider {
             position: absolute;
             margin-left: -18px;
@@ -124,13 +149,15 @@
             -webkit-animation: slide_up 2s infinite ease-out;
         }
 
-        @media (device-height:480px) and (-webkit-min-device-pixel-ratio:2){/* 兼容iphone4/4s */
+        @media (device-height: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+            /* 兼容iphone4/4s */
             div.logo {
                 width: 138px;
                 height: 110px;
                 left: 50%;
                 margin-left: -69px;
             }
+
             #iSlider-wrapper div.content {
                 font-size: 0.8rem;
                 line-height: 1.3rem;
@@ -212,17 +239,7 @@
             味在嘴里，意在心里的咖啡文化
         </div>
         <div class="content">
-            咖啡馆遍布世界各地，<br/>
-            而每个国家的咖啡馆不管是在风格氛围上，<br/>
-            还是口味上都会有各自独特的风味。<br/>
-            意大利浓缩咖啡：味苦而浓香；<br/>
-            美式咖啡：口味偏淡；<br/>
-            混合咖啡：添加牛奶、巧克力、奶泡、奶油、<br/>
-            焦糖、巧克力等食品，<br/>
-            减少咖啡的酸涩和苦味，<br/>
-            保留咖啡的醇香，<br/>
-            使得更多人容易接受咖啡，<br/>
-            并且爱上喝咖啡。
+            
         </div>
     </div>
     <div class="slide" id="slide6">
@@ -275,7 +292,20 @@
         },
         // HTML element
         {
-            content: document.getElementById('slide2')
+            content: document.getElementById('slide2'),
+            messages:[
+                '咖啡馆遍布世界各地，',
+                '而每个国家的咖啡馆不管是在风格氛围上，',
+                '还是口味上都会有各自独特的风味。',
+                '意大利浓缩咖啡：味苦而浓香；',
+                '美式咖啡：口味偏淡；',
+                '混合咖啡：添加牛奶、巧克力、奶泡、奶油、',
+                '焦糖、巧克力等食品，',
+                '减少咖啡的酸涩和苦味，',
+                '保留咖啡的醇香，',
+                '使得更多人容易接受咖啡，',
+                '并且爱上喝咖啡。'
+            ]
         },
         {
             content: document.getElementById('slide3')
@@ -292,7 +322,7 @@
         {
             content: document.getElementById('slide7')
         }
-    ];
+    ], AnimationHandle;
 
     new iSlider({
         dom: document.getElementById('iSlider-wrapper'),
@@ -301,6 +331,12 @@
 //        animateType: 'flip',
         animateTime: 300,
         animateEasing: 'ease',
+        onslidestart: function () {
+            if (AnimationHandle) {
+                window.cancelRequestAnimationFrame(AnimationHandle);
+                AnimationHandle = null;
+            }
+        },
         onslidechanged: function (index, dom) {
             var oldDis = document.getElementById('sliderIcon').style.display;
             if (index === (list.length - 1)) {
@@ -308,6 +344,26 @@
             } else if (oldDis === 'none') {
                 document.getElementById('sliderIcon').style.display = 'block';
             }
+            if (index > 0) {
+                var el = $(dom).find('.content'),
+                        messages = el.html().split('<br>'),
+                        speed = 4,
+                        index,
+                        appendMessage = function () {
+                            if (index == 0) {
+                                $('<span class="message">' + messages.shift() + '</span>').appendTo(el).fadeIn(50);
+                                index = speed;
+                            } else {
+                                index--;
+                            }
+                            if (messages.length > 0) {
+                                AnimationHandle = window.requestAnimationFrame(appendMessage);
+                            }
+                        };
+                el.html('');
+                AnimationHandle = window.requestAnimationFrame(appendMessage);
+            }
+
         }
     });
 </script>
