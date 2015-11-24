@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>财小贝——开心财商学堂</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <script src="../resources/3p/iSlider/iSlider.min.js"></script>
+    <script src="../resources/3p/jquery-2.1.4.min.js"></script>
+    <link href="../resources/css/index.css" rel="stylesheet">
+    <link href="../resources/css/iphone4.css"
+          media="screen and (device-height: 480px) and (-webkit-min-device-pixel-ratio: 2)" rel="stylesheet">
+    <style>
+        body {
+            background: url('img/background.png');
+            background-size: 100%;
+            color: #222;
+        }
+
+        div.logo {
+            /*--389*230--*/
+            background: url('img/logo.png') no-repeat;
+            background-size: 100%;
+            width: 224px;
+            margin-left: -112px;
+        }
+
+        div.logo.startPage {
+            /*--482*335--*/
+            background: url('img/logoStart.png') no-repeat;
+            background-size: 100%;
+            width: 276px;
+            height: 221px;
+            margin-left: -138px;
+        }
+
+        #iSlider-wrapper #slide4 {
+            padding-top: 20px;
+        }
+
+        #iSlider-wrapper #slide4 div.title {
+            margin-top: 5px;
+        }
+
+        #iSlider-wrapper #slide5 b {
+            font-size: 1.5rem;
+        }
+
+        .notice {
+            background-color: white;
+            margin: 10px;
+            border: 1px solid #666;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .notice span, .notice ul {
+            float: left;
+        }
+
+        #iSlider-wrapper .notice ul {
+            display: inline-block;
+            width: auto;
+            height: auto;
+        }
+
+        #iSlider-wrapper .notice ul li {
+            text-align: left;
+            width: auto;
+            height: auto;
+            position: relative;
+            display: block;
+            text-indent: 10px;
+            font-size: 0.8rem;
+        }
+
+        .qrCode {
+            background: url('img/qrCode.png') no-repeat;
+            background-size: 100%;
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+
+        .qrCode img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+</head>
+<body>
+<div id="iSlider-wrapper"></div>
+<div id="hiddenContent">
+    <div class="slide" id="slide1">
+        <div class="logo startPage"></div>
+    </div>
+    <div class="slide" id="slide2">
+        <div class="logo"></div>
+        <div class="title">
+            玩物壮志
+        </div>
+        <div class="content">
+
+        </div>
+    </div>
+    <div class="slide" id="slide3">
+        <div class="logo"></div>
+        <div class="title">
+            第一期课堂简介
+        </div>
+        <div class="content">
+
+        </div>
+    </div>
+    <div class="slide" id="slide4">
+        <div class="logo"></div>
+        <div class="title">
+            非常教育－百瑞景店简介
+        </div>
+        <div class="content">
+
+        </div>
+    </div>
+    <div class="slide" id="slide5">
+        <div class="logo"></div>
+        <div class="title">
+            公开课报名方式
+        </div>
+        <div class="content">
+
+        </div>
+        <div class="qrCode"><img src="img/qrCode.png" alt="二维码"/></div>
+    </div>
+</div>
+<div id="sliderIcon" class="global">
+    <div class="slider"><span></span></div>
+</div>
+<script src="../resources/js/sliderConfig.js"></script>
+<script id="show-code">
+    var list = [
+        // picture
+        {
+            content: document.getElementById('slide1')
+        },
+        // HTML element
+        {
+            content: document.getElementById('slide2'),
+            messages: [
+                '财小贝就是要带着您和您的孩子',
+                '在“玩”中收获知识',
+                '',
+                '开心财商课堂',
+                '通过游戏、活动、小组练习、实践演练等形式',
+                '将抽象的概念用浅显的语言',
+                '和生动的形式表现出来',
+                '使孩子在活泼的气氛中',
+                '掌握经济学原理',
+                '',
+                '财商课堂的目标',
+                '不在于教授给孩子多少赚钱、存钱及投资的技巧',
+                '而是以培养正确的金钱价值观为核心',
+                '传递金钱正确的观念、态度和基本规律',
+                '帮助孩子养成良好的理财习惯！',
+                '奠定企业家精神的坚固基石！'
+            ]
+        },
+        {
+            content: document.getElementById('slide3'),
+            messages: [
+                '孩子们，你知道家长给你的钱干嘛的吗？',
+                '孩子家长们，你就这么给孩子钱，难道就是有钱任性？？',
+                '快来《财小贝开心财商学堂》公开课吧！',
+                '我们会解答您的疑惑。',
+                '',
+                '这里没有枯燥的听讲，',
+                '没有刻板的讲解，',
+                '没有严肃的课堂，',
+                '只有全程的游戏，开心的互动，参与的成就！',
+                '您的孩子将在此次公开课了解到',
+                '“以物易物”的本质，',
+                '学会付出与获取的关系，',
+                '亲身体验“钱”的来之不易。',
+                '所以您还等什么，赶快报名参加吧！'
+            ]
+        },
+        {
+            content: document.getElementById('slide4'),
+            messages: [
+                '非常教育隶属于财商财富金融集团',
+                '事业开始于2013年',
+                '以财商教育致力于发展下一代非智力因素教育',
+                '成立至今',
+                '非常教育在华中地区蓬勃发展',
+                '“财商决定未来”的理念在中国正结出硕果',
+                '',
+                '非常教育',
+                '专注于5-10岁儿童财商教育',
+                '以罗伯特清崎的财商理论为基础',
+                '引入国际FQ儿童社会情绪能力发展计划',
+                '旨在提供科学系统的课程，正确的财商观念和知识',
+                '塑造在自我形象，情绪管理，竞争力，挫折抵抗、',
+                '责任感、独立性，自律及人际关系的圆融技巧',
+                '',
+                '在这一崭新的发展时期',
+                '非常教育将在儿童财商教育这一重要领域',
+                '为中国的社会繁荣做出贡献'
+            ]
+        },
+        {
+            content: document.getElementById('slide5'),
+            messages: [
+                '开课时间:每周六、周日',
+                '(9:30-11:00、13:30-15:30)',
+                '开课地点:武昌宝通寺路百瑞景小区A区底商102',
+                '预约报各联系人：王晶',
+                '联系方式:1365766558',
+                '',
+                '<b>名额有限，报满即止。</b>',
+                '<div class="notice"><span>注意事项</span><ul><li>1.因场地限制，每位孩子仅限二位家长陪同进入；</li>' +
+                '<li>2.为保证课堂教学，课堂现场请勿携带饮食和食用；</li>' +
+                '<li>3.如因不可抗力原因停课，课程依时间顺延。</li></ul><div class="clear"></div></div>'
+            ]
+        }
+    ];
+    new iSlider($.extend({
+        dom: document.getElementById('iSlider-wrapper'),
+        data: list
+    }, window.iSliderConfig));
+</script>
+</body>
+</html>
